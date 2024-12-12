@@ -21,7 +21,10 @@ use App\Http\Controllers\PreferenceController;
 //     return $request->user();
 // });
 
-
+//api documentaion
+// Route::get('documentation', function () {
+//     return view('swagger.index');
+// });
 
 //auth
 Route::post('register', [AuthController::class, 'register']);
