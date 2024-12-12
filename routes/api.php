@@ -32,7 +32,7 @@ Route::post('password-reset', [AuthController::class, 'resetPassword']);
 //article
 Route::get('articles', [ArticleController::class, 'index']);
 Route::get('articles/{id}', [ArticleController::class, 'show']);
-Route::get('articles/search', [ArticleController::class, 'search']);
+Route::get('articles/fetch', [ArticleController::class, 'fetch']);
 
 //user preference
 Route::middleware('auth:sanctum')->group(function () {

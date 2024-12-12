@@ -1,66 +1,124 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+News Aggregator API - Laravel Backend
+Description
+This project is a RESTful API built using Laravel that acts as a news aggregator. It fetches news articles from multiple external news sources and provides endpoints to retrieve articles, manage user preferences, and more. It includes authentication via Laravel Sanctum, article management, user preference management, and data aggregation from external news APIs.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Features
+User authentication with registration, login, logout, and password reset (via Laravel Sanctum).
+Fetch articles with pagination, keyword search, and filtering by category, source, and date.
+Personalized news feed based on user preferences (news sources, categories, and authors).
+Regular aggregation of articles from multiple external APIs like NewsAPI, The Guardian, and BBC News.
+API documentation provided via Swagger/OpenAPI.
 
-## About Laravel
+Table of Contents
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Installation
+Running the Project with Docker
+API Documentation
+Endpoints
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Additional Notes
+Installation
+To set up the News Aggregator API on your local machine, follow these steps:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Prerequisites
+Docker
+Docker Compose
+Composer
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Steps:
+Clone the repository:
+git clone https://github.com/firoz16/news-aggregator.git
+cd news-aggregator
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Install PHP dependencies:
+composer install
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Set up environment variables:
+Copy the .env.example file to .env:
+cp .env.example .env
+Modify the .env file to include your configuration, such as your database settings and API keys for external news sources (NewsAPI, Guardian, etc.).
 
-### Premium Partners
+Example:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+env
+Copy code
+APP_NAME=NewsAggregator
+APP_ENV=local
+APP_KEY=base64:...
+APP_DEBUG=true
+APP_URL=http://localhost
 
-## Contributing
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=aggregator_db
+DB_USERNAME=root
+DB_PASSWORD=secret
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+NEWS_API_KEY=your_news_api_key
+GUARDIAN_API_KEY=your_guardian_api_key
+BBC_API_KEY=your_bbc_api_key
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Run the Docker containers (if using Docker):
+Ensure Docker and Docker Compose are installed, and then run:
+docker-compose up --build
+This will set up the Laravel app, MySQL database, and other required services in containers.
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Access the Laravel application:
 
-## License
+Once the containers are running, you can access the API at:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+http://localhost/news-aggregator
+
+
+Access the MySQL Database:
+
+You can also access the MySQL database using a database management tool (e.g., DBeaver, phpMyAdmin) or through the command line:
+
+docker-compose exec mysql bash
+mysql -u root -p
+
+Stopping Docker Containers:
+
+To stop the containers, use:
+docker-compose down
+
+
+API Documentation
+The API is fully documented using Swagger/OpenAPI. You can access the API documentation once the application is running at:
+http://localhost/api/documentation
+Alternatively, if you have the Swagger UI hosted elsewhere, provide the URL here.
+
+Endpoints
+Here are the key endpoints provided by the API:
+
+User Authentication
+POST /api/register: Register a new user.
+POST /api/login: Login and get an API token.
+POST /api/logout: Logout the user.
+POST /api/password-reset: Request a password reset link.
+POST /api/password-update: Reset the user's password.
+Articles
+GET /api/articles: Get a list of articles with pagination and filtering by category, source, and date.
+GET /api/articles/{id}: Retrieve a single article's details.
+POST /api/articles/fetch: Fetch articles from external APIs and store them in the database.
+User Preferences
+GET /api/preferences: Get the current user's news preferences (sources, categories, authors).
+POST /api/preferences: Set or update the user's preferences for news sources, categories, and authors.
+
+Additional Notes
+Database: The application uses a MySQL database for storing user data, preferences, and articles.
+
+Caching: The API uses caching to optimize performance for frequently requested data, such as articles.
+
+Security: The application uses Laravel Sanctum for API token authentication and implements proper authorization checks for protected routes.
+
+Testing: The project includes unit and feature tests for the API endpoints. You can run the tests with the following command:
+
+
+docker-compose exec app php artisan test

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 
 class ArticleController extends Controller
 {
@@ -33,5 +34,11 @@ class ArticleController extends Controller
     public function show($id) {
         $article = Article::findOrFail($id);
         return response()->json($article);
+    }
+
+    public function fetch(){
+        Artisan::call('fetch:articles');
+
+        return response()->json(['message'=>'Articles are being fetched.']);
     }
 }
